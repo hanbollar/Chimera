@@ -17,11 +17,15 @@ ________________________________________________________________________________
 [//]: #(![Built](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg))
 [//]: #(![Issues](https://img.shields.io/badge/issues-none-green.svg))
 
+## Seminal Paper for Basis of Plugin
+
+[Video](https://www.youtube.com/watch?v=0gWomNI9CuI)
+[paper](./FILES/ZoomorphicPaper.pdf)
+
 ## Relevant Files
 
 - [Authoring Tool High Concept](./FILES/AuthoringToolHighConceptDoc2019.pdf)
 - [Literature Survey](./FILES/LiteratureSurvey.pdf)
-- [Seminal Paper for Basis of Plugin](./FILES/ZoomorphicPaper.pdf)
 
 ## Overview
 
