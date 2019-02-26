@@ -19,9 +19,9 @@ ________________________________________________________________________________
 
 ## Relevant Files
 
-[Authoring Tool High Concept](./FILES/AuthoringToolHighConceptDoc2019.pdf)
-[Literature Survey](./FILES/LiteratureSurvey.pdf)
-[Seminal Paper for Basis of Plugin](./FILES/ZoomorphicPaper.pdf)
+- [Authoring Tool High Concept](./FILES/AuthoringToolHighConceptDoc2019.pdf)
+- [Literature Survey](./FILES/LiteratureSurvey.pdf)
+- [Seminal Paper for Basis of Plugin](./FILES/ZoomorphicPaper.pdf)
 
 ## Overview
 
