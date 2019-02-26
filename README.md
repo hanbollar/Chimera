@@ -19,8 +19,7 @@ ________________________________________________________________________________
 
 ## Seminal Paper for Basis of Plugin
 
-[Video](https://www.youtube.com/watch?v=0gWomNI9CuI)
-[paper](./FILES/ZoomorphicPaper.pdf)
+[VIDEO](https://www.youtube.com/watch?v=0gWomNI9CuI), [PAPER](./FILES/ZoomorphicPaper.pdf)
 
 ## Relevant Files
 
