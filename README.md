@@ -1,4 +1,4 @@
-![title](#)
+[//]: #(![title](#)
 # Chimera
 
 **University of Pennsylvania, CIS 660: Advanced Topics in Computer Graphics, Maya Plugin**
