@@ -4,3 +4,8 @@ AnimalMesh::AnimalMesh()
 {
 
 }
+
+AnimalMesh::~AnimalMesh()
+{
+
+}

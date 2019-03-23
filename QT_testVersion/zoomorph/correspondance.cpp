@@ -4,3 +4,8 @@ Correspondance::Correspondance()
 {
 
 }
+
+Correspondance::~Correspondance()
+{
+
+}

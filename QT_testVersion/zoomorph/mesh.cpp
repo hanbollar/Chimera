@@ -8,9 +8,17 @@ Mesh::~Mesh() {
     vertices.resize(0, 0);
 }
 
+void Mesh::loadMesh() {
+    return;
+}
 
+void Mesh::LBS() {
+    return;
+}
 
-
+void Mesh::FFD() {
+    return;
+}
 
 Eigen::Matrix<float, Dynamic, 3> vertices;
 Eigen::Matrix<int, Dynamic, Dynamic> edges;

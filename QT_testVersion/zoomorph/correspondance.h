@@ -5,7 +5,7 @@
 class Correspondance
 {
 private:
-    ... cTree; // TODO: write/find node library to use for plugin
+    // ... cTree; // TODO: write/find node library to use for plugin
 public:
     Correspondance();
     ~Correspondance();

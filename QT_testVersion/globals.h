@@ -12,10 +12,10 @@
 #include <unsupported/Eigen/MatrixFunctions>
 
 // TYPES
-typedef Eigen::Matrix<float, Dynamic, 1> mat_D1f;
-typedef Eigen::Matrix<float, Dynamic, 2> mat_D2f;
-typedef Eigen::Matrix<float, Dynamic, 3> mat_D3f;
-typedef Eigen::Matrix<int, Dynamic, Dynamic> mat_DDi;
+typedef Eigen::Matrix<float, Eigen::Dynamic, 1> mat_D1f;
+typedef Eigen::Matrix<float, Eigen::Dynamic, 2> mat_D2f;
+typedef Eigen::Matrix<float, Eigen::Dynamic, 3> mat_D3f;
+typedef Eigen::Matrix<int, Eigen::Dynamic, Eigen::Dynamic> mat_DDi;
 // typedef Eigen::Matrix<T, N, 1> V; // vertical
 // typedef Eigen::Matrix<T, 1, N> V_h; // horizontal
 // typedef Eigen::Matrix<T, Dynamic, Dynamic> DM; // dynamic matrix

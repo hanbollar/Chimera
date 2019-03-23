@@ -1,10 +1,12 @@
 #ifndef MESH_H
 #define MESH_H
 
-enum {
+#include "globals.h"
+
+enum MESHTYPEID {
     BASE,
     ANIMAL
-} MESHTYPEID;
+};
 
 class Mesh {
 private:
@@ -13,7 +15,7 @@ private:
     mat_D2f configParameters; // a and b for each vertex pair
 
     bool skinnedMesh;
-    MESTHTYPEID meshId;
+    MESHTYPEID meshId;
 
 public:
     Mesh();
