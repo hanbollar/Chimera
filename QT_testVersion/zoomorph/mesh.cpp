@@ -1,6 +1,6 @@
 #include "mesh.h"
 
-Mesh::Mesh() : vertices((0, 0)), edges() {
+Mesh::Mesh() : vertices(mat_D3f(0, 0)), edges() {
 
 }
 
@@ -20,8 +20,8 @@ void Mesh::FFD() {
     return;
 }
 
-Eigen::Matrix<float, Dynamic, 3> vertices;
-Eigen::Matrix<int, Dynamic, Dynamic> edges;
-Eigen::Matrix<float, Dynamic, 2> configParameters; // a and b for each vertex
+//Eigen::Matrix<float, Eigen::Dynamic, 3> vertices;
+//Eigen::Matrix<int, Eigen::Dynamic, Eigen::Dynamic> edges;
+//Eigen::Matrix<float, Eigen::Dynamic, 2> configParameters; // a and b for each vertex
 bool skinnedMesh;
-MESTHTYPEID meshId;
+MESHTYPEID meshId;

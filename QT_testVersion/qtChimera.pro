@@ -30,20 +30,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    zoomorph/animalmesh.cpp \
-    zoomorph/basemesh.cpp \
-    zoomorph/correspondance.cpp \
-    zoomorph/energyutils.cpp \
     zoomorph/mesh.cpp \
     zoomorph/zoomorphic.cpp \
 
 
 HEADERS += \
     mainwindow.h \
-    zoomorph/animalmesh.h \
-    zoomorph/basemesh.h \
-    zoomorph/correspondance.h \
-    zoomorph/energyutils.h \
     zoomorph/mesh.h \
     zoomorph/zoomorphic.h \
     globals.h

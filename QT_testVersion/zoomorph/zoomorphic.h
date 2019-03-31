@@ -2,8 +2,6 @@
 #define ZOOMORPHIC_H
 
 #include "mesh.h"
-#include "animalmesh.h"
-#include "basemesh.h"
 #include "correspondance.h"
 
 class Zoomorph {
