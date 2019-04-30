@@ -1,5 +1,9 @@
 #include "kdtree.h"
 
+// Global variable
+Point3f bestDistancePoint;
+float bestDistance = INFINITY;
+
 KDTree::KDTree() : root_(nullptr) {}
 
 KDTree::KDTree(const std::vector<Triangle*>& tris) : root_(new KDNode(tris))
@@ -26,6 +30,10 @@ void KDTree::BuildWithTriangles(const std::vector<Triangle*>& tris) {
         delete root_;
         root_ = new KDNode(tris);
     }
+}
+
+void KDTree::GetNearestPoint(Point3f Q) {
+    root_->GetNearestPoint(root_, Q);
 }
 
 /**************/
@@ -171,4 +179,32 @@ bool KDNode::Within(const glm::vec3& loc, int& isx_count) {
 
 bool KDNode::IsLeaf() {
     return tris_.size() != 0;
+}
+
+float KDNode::GetClosestDistanceToPoint(Point3f p) {
+      float dx = glm::max(glm::max(min_bound_.x - p.x, 0.0f), p.x - max_bound_.x);
+      float dy = glm::max(glm::max(min_bound_.y - p.y, 0.0f), p.y - max_bound_.y);
+      float dz = glm::max(glm::max(min_bound_.z - p.z, 0.0f), p.z - max_bound_.z);
+      return glm::sqrt(dx*dx + dy*dy + dz * dz);
+}
+
+void KDNode::GetNearestPoint(KDNode node, Point3f p) {
+    if (node == NULL || node.GetClosestDistanceToPoint(p) > bestDistance) {
+        return;
+    }
+    if (node.IsLeaf()) {
+        Point3f leafPoint = node.tris_.at(0)->GetClosestPointToAPoint(p);
+        float dist = glm::distance(leafPoint, p);
+        if (dist < bestDistance) {
+            bestDistance = dist;
+            bestDistancePoint = leafPoint;
+        }
+    }
+    if (p[axis_] < node.min_bound_[axis_]) {
+        GetNearestPoint(node.left_, p);
+        GetNearestPoint(node.right_, p);
+    } else {
+        GetNearestPoint(node.left_, p);
+        GetNearestPoint(node.right_, p);
+    }
 }

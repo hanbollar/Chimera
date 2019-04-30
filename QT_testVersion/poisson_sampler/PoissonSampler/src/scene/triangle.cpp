@@ -101,3 +101,100 @@ bool Triangle::Intersect(const glm::vec3& origin, const glm::vec3& direction, In
     }
     return false;
 }
+
+Point3f Triangle::GetClosestPointToAPoint(const Point3f sourcePosition)
+{
+    Vector3f edge0 = points[1] - points[0];
+    Vector3f edge1 = points[2] - points[0];
+    Vector3f v0 = points[0] - sourcePosition;
+
+        float a = glm::dot(edge0, edge0);
+        float b =  glm::dot(edge0, edge1);
+        float c =  glm::dot(edge1, edge1);
+        float d =  glm::dot(edge0, v0);
+        float e = glm::dot(edge1, v0);
+
+        float det = a*c - b*b;
+        float s = b*e - c*d;
+        float t = b*d - a*e;
+
+        if ( s + t < det )
+        {
+            if ( s < 0.f )
+            {
+                if ( t < 0.f )
+                {
+                    if ( d < 0.f )
+                    {
+                        s = glm::clamp( -d/a, 0.f, 1.f );
+                        t = 0.f;
+                    }
+                    else
+                    {
+                        s = 0.f;
+                        t = glm::clamp( -e/c, 0.f, 1.f );
+                    }
+                }
+                else
+                {
+                    s = 0.f;
+                    t = glm::clamp( -e/c, 0.f, 1.f );
+                }
+            }
+            else if ( t < 0.f )
+            {
+                s = glm::clamp( -d/a, 0.f, 1.f );
+                t = 0.f;
+            }
+            else
+            {
+                float invDet = 1.f / det;
+                s *= invDet;
+                t *= invDet;
+            }
+        }
+        else
+        {
+            if ( s < 0.f )
+            {
+                float tmp0 = b+d;
+                float tmp1 = c+e;
+                if ( tmp1 > tmp0 )
+                {
+                    float numer = tmp1 - tmp0;
+                    float denom = a-2*b+c;
+                    s = glm::clamp( numer/denom, 0.f, 1.f );
+                    t = 1-s;
+                }
+                else
+                {
+                    t = glm::clamp( -e/c, 0.f, 1.f );
+                    s = 0.f;
+                }
+            }
+            else if ( t < 0.f )
+            {
+                if ( a+d > b+e )
+                {
+                    float numer = c+e-b-d;
+                    float denom = a-2*b+c;
+                    s = glm::clamp( numer/denom, 0.f, 1.f );
+                    t = 1-s;
+                }
+                else
+                {
+                    s = glm::clamp( -e/c, 0.f, 1.f );
+                    t = 0.f;
+                }
+            }
+            else
+            {
+                float numer = c+e-b-d;
+                float denom = a-2*b+c;
+                s = glm::clamp( numer/denom, 0.f, 1.f );
+                t = 1.f - s;
+            }
+        }
+
+        return points[0] + s * edge0 + t * edge1;
+}

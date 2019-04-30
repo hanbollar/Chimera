@@ -72,6 +72,18 @@ void MyGL::initializeGL() {
     prog_flat.create(":/glsl/flat.vert.glsl", ":/glsl/flat.frag.glsl");
 
     vao.bind();
+
+    //  WENLI TESTING RANDOM THINGS HERE ////////////////////////////
+    Triangle tri = Triangle(Vector3f(0,0,0), Vector3f(0,1,0), Vector3f(0,0,1));
+    std::cout<< "HELLO WENLI" <<std::endl;
+    Point3f source(0,24,0);
+    Point3f closestPoint = tri.GetClosestPointToAPoint(source);
+    std::cout << closestPoint.x << " ," << closestPoint.y << " ," << closestPoint.z << std::endl;
+
+    std::vector<Triangle*> tris;
+    KDNode node = KDNode(tris, Vector3f(0,0,0), Vector3f(1,1,1) );
+    float dist = node.GetClosestDistanceToPoint(Vector3f(-1.0f,12.0f,-1.0f));
+    std::cout << "Distance to box is : " << dist << std::endl;
 }
 
 void MyGL::resizeGL(int w, int h) {

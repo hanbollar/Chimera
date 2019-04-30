@@ -22,6 +22,8 @@ public:
     Normal3f GetNormal(const Point3f &position) const;
     float Area() const;
 
+    Point3f GetClosestPointToAPoint(const Point3f sourcePosition);
+
     Point3f points[3];
     Normal3f normals[3];
     Point2f uvs[3];
