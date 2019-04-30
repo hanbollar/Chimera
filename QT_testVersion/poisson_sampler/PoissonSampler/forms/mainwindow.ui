@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>651</width>
+    <width>657</width>
     <height>747</height>
    </rect>
   </property>
@@ -62,6 +62,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="stepinterp">
+        <property name="text">
+         <string>step interp</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QCheckBox" name="checkBox_viewSourceOBJ">
         <property name="enabled">
          <bool>true</bool>
@@ -75,19 +82,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="checkBox_viewVOXELS">
-        <property name="text">
-         <string>View GRID STRUCTURE</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkBox_viewTargetVoxels">
-        <property name="text">
-         <string>View Target VOXELS</string>
+       <widget class="QSpinBox" name="viewWhichVoxel">
+        <property name="maximum">
+         <number>2</number>
         </property>
        </widget>
       </item>
@@ -100,8 +97,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>651</width>
-     <height>21</height>
+     <width>657</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -157,8 +154,9 @@
     <slot>slot_calculateCenterOfMass()</slot>
     <slot>slot_calculateVertexOffset()</slot>
     <slot>slot_loadTargetObj()</slot>
-    <slot>slot_viewTARGETVOXELS(bool)</slot>
     <slot>slot_createGrid()</slot>
+    <slot>slot_updateInterp()</slot>
+    <slot>slot_viewWHICHVOXELS(int)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -213,22 +211,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkBox_viewVOXELS</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>mygl</receiver>
-   <slot>slot_viewVOXELS(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>479</x>
-     <y>628</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>318</x>
-     <y>295</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>sourceVOLUME</sender>
    <signal>clicked()</signal>
    <receiver>mygl</receiver>
@@ -277,22 +259,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkBox_viewTargetVoxels</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>mygl</receiver>
-   <slot>slot_viewTARGETVOXELS(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>325</x>
-     <y>712</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>318</x>
-     <y>260</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>creategrid</sender>
    <signal>clicked()</signal>
    <receiver>mygl</receiver>
@@ -305,6 +271,22 @@
     <hint type="destinationlabel">
      <x>318</x>
      <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>stepinterp</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>mygl</receiver>
+   <slot>slot_updateInterp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>326</x>
+     <y>634</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>326</x>
+     <y>251</y>
     </hint>
    </hints>
   </connection>

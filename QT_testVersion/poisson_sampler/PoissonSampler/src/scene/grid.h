@@ -50,7 +50,7 @@ public:
 
     virtual GLenum drawMode() const;
     virtual void create();
-    void create(bool b);
+    void create(int view_src_trg_lerp);
 };
 
 #endif // GRID_H

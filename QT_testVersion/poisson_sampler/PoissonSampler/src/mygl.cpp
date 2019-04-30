@@ -30,7 +30,7 @@ MyGL::MyGL(QWidget *parent)
       mesh_source(nullptr), mesh_target(nullptr), grid(nullptr),
       view_VOXELS(true), view_OBJ(true),
       using_com(false), com_obj(nullptr),
-      grid_show_target(false)
+      view_src_trg_lerp(0)
 {
     // Connect the timer to a function so that when the timer ticks the function is executed
     connect(&timer, SIGNAL(timeout()), this, SLOT(timerUpdate()));
@@ -292,9 +292,9 @@ void MyGL::slot_viewOBJ(bool b) {
     this->update();
 }
 
-void MyGL::slot_viewTARGETVOXELS(bool b) {
-    grid_show_target = b;
-    grid->create(grid_show_target);
+void MyGL::slot_viewWHICHVOXELS(int b) {
+    view_src_trg_lerp = b;
+    grid->create(view_src_trg_lerp);
     update();
 }
 
@@ -309,10 +309,25 @@ void MyGL::slot_createGrid() {
     std::cout << "computing for target" << std::endl;
     grid->ComputeTargetSignedDistanceFunctions(mesh_target);
     std::cout << "creating" << std::endl;
-    grid_show_target = true;
-    grid->create(grid_show_target);
+    view_src_trg_lerp = 1;
+    grid->create(view_src_trg_lerp);
 
     std::cout << "updating " << std::endl;
 
     this->update();
+}
+
+void MyGL::slot_updateInterp() {
+    if (!grid) {
+        return;
+    }
+
+    grid->Update();
+    view_src_trg_lerp = 2;
+    grid->create(view_src_trg_lerp);
+    this->update();
+}
+
+void MyGL::slot_viewTARGETVOXELS(bool b) {
+    // ignore me
 }

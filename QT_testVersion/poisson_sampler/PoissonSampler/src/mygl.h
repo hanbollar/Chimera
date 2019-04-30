@@ -51,7 +51,7 @@ private:
     bool view_VOXELS;
     bool view_OBJ;
 
-    bool grid_show_target;
+    int view_src_trg_lerp;
 
     bool using_com;
 
@@ -80,12 +80,17 @@ public slots:
 
     void slot_viewVOXELS(bool b);
     void slot_viewOBJ(bool b);
-    void slot_viewTARGETVOXELS(bool b);
+
+    void slot_viewWHICHVOXELS(int b);
 
     void slot_createGrid();
 
     void slot_calculateVolumeOfPoissonObj();
     void slot_calculateCenterOfMass();
+
+    void slot_updateInterp();
+
+    void slot_viewTARGETVOXELS(bool b);
 
 signals:
     void sig_ResizeToCamera(int,int);

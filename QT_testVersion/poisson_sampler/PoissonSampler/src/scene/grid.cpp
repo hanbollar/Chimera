@@ -147,6 +147,7 @@ void Grid::ComputeSignedDistanceFunctions(const Mesh* m, const bool& source) {
         // actual sdf
         if (source) {
             grid_cells_info_[i].source_value = sign * ClosestDistanceToMesh(grid_loc_position, m);
+            grid_cells_interp_[i] = grid_cells_info_[i].source_value;
         } else {
             grid_cells_info_[i].target_value = sign * ClosestDistanceToMesh(grid_loc_position, m);
         }
@@ -166,11 +167,11 @@ GLenum Grid::drawMode() const {
 }
 
 void Grid::create() {
-    create(false);
+    create(2);
 }
 
 
-void Grid::create(bool using_target) {
+void Grid::create(int view_src_trg_lerp) {
     count = dim_num_cells_.x * dim_num_cells_.y * dim_num_cells_.z;
 
     std::vector<glm::vec3> vert_pos;
@@ -184,16 +185,12 @@ void Grid::create(bool using_target) {
 //        vert_pos.push_back(loc);
 //        vert_nor.push_back(glm::vec3(1.f));
 
-        float val = using_target ? grid_cells_info_[i].target_value : grid_cells_info_[i].source_value;
+        float val = view_src_trg_lerp == 0 ? grid_cells_info_[i].source_value :
+                    view_src_trg_lerp == 1 ? grid_cells_info_[i].target_value :
+                                             grid_cells_interp_[i];
 
         if (val > 0) {
-
-            glm::ivec3 index3d = Convert1DCellIndexTo3DCellIndex(i);
-            if (index3d.x == 1 && index3d.y == 4 && index3d.z == 4) {
-                vert_col.push_back(glm::vec3(1, 1, 0));
-            } else {
-                vert_col.push_back(glm::vec3(0, val / 3.0f, val / 3.0f));
-            }
+            vert_col.push_back(glm::vec3(0, val / 3.0f, val / 3.0f));
             vert_pos.push_back(loc);
             vert_nor.push_back(glm::vec3(1.f));
             vert_idx.push_back(on_count);
