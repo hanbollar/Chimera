@@ -10,8 +10,6 @@ private:
 
     unsigned int axis_;
 
-    const glm::vec3 SHOOTING_DIR = glm::vec3(1, 0, 0);
-
     const unsigned int MAX_NUM_ITEMS_AT_LEAF = 1;
 
     glm::vec3 min_bound_ = glm::vec3(INFINITY);
@@ -26,7 +24,7 @@ public:
 
     void BuildWithTriangles(const std::vector<Triangle*>& tris);
 
-    bool Within(const glm::vec3& loc, int& isx_count);
+    bool Within(const glm::vec3& loc, int& isx_count, const glm::vec3& dir);
     bool IsLeaf();
     float GetClosestDistanceToPoint(Point3f p);
     void GetNearestPoint(KDNode node, Point3f q);

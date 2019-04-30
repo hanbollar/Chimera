@@ -55,16 +55,39 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="creategrid">
+        <property name="text">
+         <string>Create Grid</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QCheckBox" name="checkBox_viewSourceOBJ">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="text">
          <string>view Source OBJ</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QCheckBox" name="checkBox_viewVOXELS">
         <property name="text">
-         <string>View VOXELS</string>
+         <string>View GRID STRUCTURE</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_viewTargetVoxels">
+        <property name="text">
+         <string>View Target VOXELS</string>
         </property>
        </widget>
       </item>
@@ -134,6 +157,8 @@
     <slot>slot_calculateCenterOfMass()</slot>
     <slot>slot_calculateVertexOffset()</slot>
     <slot>slot_loadTargetObj()</slot>
+    <slot>slot_viewTARGETVOXELS(bool)</slot>
+    <slot>slot_createGrid()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -248,6 +273,38 @@
     <hint type="destinationlabel">
      <x>318</x>
      <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_viewTargetVoxels</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>mygl</receiver>
+   <slot>slot_viewTARGETVOXELS(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>325</x>
+     <y>712</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>318</x>
+     <y>260</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>creategrid</sender>
+   <signal>clicked()</signal>
+   <receiver>mygl</receiver>
+   <slot>slot_createGrid()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>325</x>
+     <y>608</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>318</x>
+     <y>255</y>
     </hint>
    </hints>
   </connection>

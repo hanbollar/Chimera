@@ -90,7 +90,7 @@ bool Triangle::Intersect(const glm::vec3& origin, const glm::vec3& direction, In
     float s3 = 0.5f * glm::length(glm::cross(P - points[0], P - points[1]))/S;
     float sum = s1 + s2 + s3;
 
-    if(s1 >= 0 && s1 <= 1 && s2 >= 0 && s2 <= 1 && s3 >= 0 && s3 <= 1 && fequal(sum, 1.0f)){
+    if(s1 >= 0.f && s1 <= 1.f && s2 >= 0.f && s2 <= 1.f && s3 >= 0.f && s3 <= 1.f && fequal(sum, 1.f)){
         if (isect == nullptr) {
             return true;
         }

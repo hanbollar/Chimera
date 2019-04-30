@@ -10,10 +10,24 @@ Grid::Grid()
 
 Grid::Grid(const Bounds3f &bbox)
     : Drawable(),
-      bbox_(bbox), dim_of_cell_(glm::vec3((bbox.max - bbox.min) / glm::vec3(dim_num_cells_))),
+      bbox_(bbox), dim_of_cell_(glm::vec3(0.f)),
       grid_cells_info_(std::vector<Vertex>(dim_num_cells_.x * dim_num_cells_.y * dim_num_cells_.z, Vertex())),
       grid_cells_interp_(std::vector<float>(dim_num_cells_.x * dim_num_cells_.y * dim_num_cells_.z, 0))
-{}
+{
+    dim_of_cell_ = (2.f*OFFSET + bbox.max - bbox.min) / glm::vec3(dim_num_cells_);
+    origin_ = bbox.min - OFFSET;
+}
+
+Grid::Grid(const std::vector<Triangle*>& source, const std::vector<Triangle*>& target)
+    : Drawable(),
+      bbox_(Bounds3f::Union(*Bounds3f::BuildBoundingBox(source), *Bounds3f::BuildBoundingBox(target))), dim_of_cell_(glm::vec3(0.f)),
+      grid_cells_info_(std::vector<Vertex>(dim_num_cells_.x * dim_num_cells_.y * dim_num_cells_.z, Vertex())),
+      grid_cells_interp_(std::vector<float>(dim_num_cells_.x * dim_num_cells_.y * dim_num_cells_.z, 0))
+{
+    dim_of_cell_ = (2.f*OFFSET + bbox_.max - bbox_.min) / glm::vec3(dim_num_cells_);
+    origin_ = bbox_.min - OFFSET;
+}
+
 
 int Grid::Convert3DCellIndexTo1DCellIndex(const int& i, const int& j, const int& k) {
     return i + j * dim_num_cells_.x + k * dim_num_cells_.x * dim_num_cells_.y;
@@ -26,11 +40,11 @@ glm::ivec3 Grid::Convert1DCellIndexTo3DCellIndex(const int& index) {
 }
 
 glm::vec3 Grid::Convert3DCellIndexToLocation(const int& i, const int& j, const int& k) {
-    return origin_ + i * dim_of_cell_.x + j * dim_of_cell_.y + k * dim_of_cell_.z;
+    return origin_ + glm::vec3(i * dim_of_cell_.x, j * dim_of_cell_.y, k * dim_of_cell_.z);
 }
 
 glm::vec3 Grid::Convert3DCellIndexToLocation(const glm::ivec3 indices) {
-    return origin_ + indices[0] * dim_of_cell_.x + indices[1] * dim_of_cell_.y + indices[2] * dim_of_cell_.z;
+    return Convert3DCellIndexToLocation(indices[0], indices[1], indices[2]);
 }
 
 glm::vec3 Grid::Convert1DCellIndexToLocation(const int& i) {
@@ -102,16 +116,34 @@ void Grid::Update() {
 float ClosestDistanceToMesh(const glm::vec3& loc, const Mesh* m) {
     // ????? how to do????
     // TODO!!!!
-    return -1;
+    return 1;
+}
+
+bool BadWithinTest(const glm::vec3& loc, const Mesh* m) {
+    int num_isx = 0;
+
+    bool within = true;
+    int num_within = 0;
+    for (int i = 0; i < 3; ++i) {
+        num_isx = 0;
+        glm::vec3 dir = (i == 0) ? glm::vec3(1, 0, 0) : (i == 1) ? glm::vec3(0, 1, 0) : glm::vec3(0, 0, 1);
+        for (Triangle* f : m->faces) {
+            num_isx += (f->Intersect(loc, dir)) ? 1 : 0;
+        }
+        num_within += (num_isx % 2 != 0) ? 1 : 0;
+        within &= (num_isx % 2 != 0);
+    }
+    return num_within >= 2;
 }
 
 void Grid::ComputeSignedDistanceFunctions(const Mesh* m, const bool& source) {
     float tot_num_cells = dim_num_cells_.x * dim_num_cells_.y * dim_num_cells_.z;
     for (int i = 0; i < tot_num_cells; ++i) {
+        std::cout << "on cell: " << i << " of " << tot_num_cells << std::endl;
         glm::vec3 grid_loc_position = Convert1DCellIndexToLocation(i);
 
         // inside vs outside
-        float sign = (m->tree->WithinAnyShape(grid_loc_position)) ? 1 : -1;
+        float sign = BadWithinTest(grid_loc_position, m) /*m->tree->WithinAnyShape(grid_loc_position)*/ ? 1 : -1;
 
         // actual sdf
         if (source) {
@@ -135,20 +167,45 @@ GLenum Grid::drawMode() const {
 }
 
 void Grid::create() {
+    create(false);
+}
+
+
+void Grid::create(bool using_target) {
     count = dim_num_cells_.x * dim_num_cells_.y * dim_num_cells_.z;
 
     std::vector<glm::vec3> vert_pos;
     std::vector<glm::vec3> vert_nor;
     std::vector<glm::vec3> vert_col;
     std::vector<GLuint> vert_idx;
+    int on_count = 0;
     for (int i = 0; i < count; ++i) {
         glm::vec3 loc = Convert1DCellIndexToLocation(i);
         std::cout << loc.x << ", " << loc.y << ", " << loc.z << std::endl;
-        vert_pos.push_back(loc);
-        vert_nor.push_back(glm::vec3(1.f));
-        vert_col.push_back(glm::vec3(0, 1, 0));
-        vert_idx.push_back(i);
+//        vert_pos.push_back(loc);
+//        vert_nor.push_back(glm::vec3(1.f));
+
+        float val = using_target ? grid_cells_info_[i].target_value : grid_cells_info_[i].source_value;
+
+        if (val > 0) {
+
+            glm::ivec3 index3d = Convert1DCellIndexTo3DCellIndex(i);
+            if (index3d.x == 1 && index3d.y == 4 && index3d.z == 4) {
+                vert_col.push_back(glm::vec3(1, 1, 0));
+            } else {
+                vert_col.push_back(glm::vec3(0, 1, 0));
+            }
+            vert_pos.push_back(loc);
+            vert_nor.push_back(glm::vec3(1.f));
+            vert_idx.push_back(on_count);
+            ++on_count;
+        } else {
+//            vert_col.push_back(glm::vec3(1));
+        }
+//        vert_idx.push_back(i);
     }
+
+    count = vert_col.size();
 
     bufIdx.create();
     bufIdx.bind();

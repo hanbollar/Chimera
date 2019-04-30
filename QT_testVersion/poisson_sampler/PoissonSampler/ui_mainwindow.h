@@ -38,8 +38,10 @@ public:
     QPushButton *loadSourceObj;
     QPushButton *loadTargetObj;
     QPushButton *sourceVOLUME;
+    QPushButton *creategrid;
     QCheckBox *checkBox_viewSourceOBJ;
     QCheckBox *checkBox_viewVOXELS;
+    QCheckBox *checkBox_viewTargetVoxels;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuHelp;
@@ -88,15 +90,28 @@ public:
 
         verticalLayout->addWidget(sourceVOLUME);
 
+        creategrid = new QPushButton(centralWidget);
+        creategrid->setObjectName(QStringLiteral("creategrid"));
+
+        verticalLayout->addWidget(creategrid);
+
         checkBox_viewSourceOBJ = new QCheckBox(centralWidget);
         checkBox_viewSourceOBJ->setObjectName(QStringLiteral("checkBox_viewSourceOBJ"));
+        checkBox_viewSourceOBJ->setEnabled(true);
+        checkBox_viewSourceOBJ->setChecked(true);
 
         verticalLayout->addWidget(checkBox_viewSourceOBJ);
 
         checkBox_viewVOXELS = new QCheckBox(centralWidget);
         checkBox_viewVOXELS->setObjectName(QStringLiteral("checkBox_viewVOXELS"));
+        checkBox_viewVOXELS->setChecked(true);
 
         verticalLayout->addWidget(checkBox_viewVOXELS);
+
+        checkBox_viewTargetVoxels = new QCheckBox(centralWidget);
+        checkBox_viewTargetVoxels->setObjectName(QStringLiteral("checkBox_viewTargetVoxels"));
+
+        verticalLayout->addWidget(checkBox_viewTargetVoxels);
 
 
         gridLayout_2->addLayout(verticalLayout, 0, 0, 1, 1);
@@ -124,6 +139,8 @@ public:
         QObject::connect(sourceVOLUME, SIGNAL(clicked()), mygl, SLOT(slot_calculateVolumeOfPoissonObj()));
         QObject::connect(loadTargetObj, SIGNAL(clicked()), mygl, SLOT(slot_loadTargetObj()));
         QObject::connect(checkBox_viewSourceOBJ, SIGNAL(clicked(bool)), mygl, SLOT(slot_viewOBJ(bool)));
+        QObject::connect(checkBox_viewTargetVoxels, SIGNAL(clicked(bool)), mygl, SLOT(slot_viewTARGETVOXELS(bool)));
+        QObject::connect(creategrid, SIGNAL(clicked()), mygl, SLOT(slot_createGrid()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -139,8 +156,10 @@ public:
         loadSourceObj->setText(QApplication::translate("MainWindow", "Load Source Obj", Q_NULLPTR));
         loadTargetObj->setText(QApplication::translate("MainWindow", "Load Target Obj", Q_NULLPTR));
         sourceVOLUME->setText(QApplication::translate("MainWindow", "Calculate Source Volume", Q_NULLPTR));
+        creategrid->setText(QApplication::translate("MainWindow", "Create Grid", Q_NULLPTR));
         checkBox_viewSourceOBJ->setText(QApplication::translate("MainWindow", "view Source OBJ", Q_NULLPTR));
-        checkBox_viewVOXELS->setText(QApplication::translate("MainWindow", "View VOXELS", Q_NULLPTR));
+        checkBox_viewVOXELS->setText(QApplication::translate("MainWindow", "View GRID STRUCTURE", Q_NULLPTR));
+        checkBox_viewTargetVoxels->setText(QApplication::translate("MainWindow", "View Target VOXELS", Q_NULLPTR));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", Q_NULLPTR));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", Q_NULLPTR));
     } // retranslateUi

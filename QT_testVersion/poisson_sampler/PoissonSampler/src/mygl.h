@@ -51,6 +51,8 @@ private:
     bool view_VOXELS;
     bool view_OBJ;
 
+    bool grid_show_target;
+
     bool using_com;
 
     COM* com_obj;
@@ -78,6 +80,9 @@ public slots:
 
     void slot_viewVOXELS(bool b);
     void slot_viewOBJ(bool b);
+    void slot_viewTARGETVOXELS(bool b);
+
+    void slot_createGrid();
 
     void slot_calculateVolumeOfPoissonObj();
     void slot_calculateCenterOfMass();
