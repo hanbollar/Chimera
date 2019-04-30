@@ -189,8 +189,10 @@ void Grid::create(int view_src_trg_lerp) {
                     view_src_trg_lerp == 1 ? grid_cells_info_[i].target_value :
                                              grid_cells_interp_[i];
 
+        float r = view_src_trg_lerp == 2 ? .5 : 0;
+
         if (val > 0) {
-            vert_col.push_back(glm::vec3(0, val / 3.0f, val / 3.0f));
+            vert_col.push_back(glm::vec3(r, val / 3.0f, val / 3.0f));
             vert_pos.push_back(loc);
             vert_nor.push_back(glm::vec3(1.f));
             vert_idx.push_back(on_count);

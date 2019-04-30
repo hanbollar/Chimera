@@ -290,6 +290,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>viewWhichVoxel</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>mygl</receiver>
+   <slot>slot_viewWHICHVOXELS(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>326</x>
+     <y>717</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>326</x>
+     <y>254</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>slot_ResizeToCamera(int,int)</slot>

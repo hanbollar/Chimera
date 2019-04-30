@@ -20,6 +20,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include "mygl.h"
@@ -39,9 +40,9 @@ public:
     QPushButton *loadTargetObj;
     QPushButton *sourceVOLUME;
     QPushButton *creategrid;
+    QPushButton *stepinterp;
     QCheckBox *checkBox_viewSourceOBJ;
-    QCheckBox *checkBox_viewVOXELS;
-    QCheckBox *checkBox_viewTargetVoxels;
+    QSpinBox *viewWhichVoxel;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuHelp;
@@ -50,7 +51,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(651, 747);
+        MainWindow->resize(657, 747);
         actionQuit = new QAction(MainWindow);
         actionQuit->setObjectName(QStringLiteral("actionQuit"));
         actionCamera_Controls = new QAction(MainWindow);
@@ -95,6 +96,11 @@ public:
 
         verticalLayout->addWidget(creategrid);
 
+        stepinterp = new QPushButton(centralWidget);
+        stepinterp->setObjectName(QStringLiteral("stepinterp"));
+
+        verticalLayout->addWidget(stepinterp);
+
         checkBox_viewSourceOBJ = new QCheckBox(centralWidget);
         checkBox_viewSourceOBJ->setObjectName(QStringLiteral("checkBox_viewSourceOBJ"));
         checkBox_viewSourceOBJ->setEnabled(true);
@@ -102,16 +108,11 @@ public:
 
         verticalLayout->addWidget(checkBox_viewSourceOBJ);
 
-        checkBox_viewVOXELS = new QCheckBox(centralWidget);
-        checkBox_viewVOXELS->setObjectName(QStringLiteral("checkBox_viewVOXELS"));
-        checkBox_viewVOXELS->setChecked(true);
+        viewWhichVoxel = new QSpinBox(centralWidget);
+        viewWhichVoxel->setObjectName(QStringLiteral("viewWhichVoxel"));
+        viewWhichVoxel->setMaximum(2);
 
-        verticalLayout->addWidget(checkBox_viewVOXELS);
-
-        checkBox_viewTargetVoxels = new QCheckBox(centralWidget);
-        checkBox_viewTargetVoxels->setObjectName(QStringLiteral("checkBox_viewTargetVoxels"));
-
-        verticalLayout->addWidget(checkBox_viewTargetVoxels);
+        verticalLayout->addWidget(viewWhichVoxel);
 
 
         gridLayout_2->addLayout(verticalLayout, 0, 0, 1, 1);
@@ -119,7 +120,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 651, 21));
+        menuBar->setGeometry(QRect(0, 0, 657, 22));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         menuHelp = new QMenu(menuBar);
@@ -135,12 +136,12 @@ public:
         QObject::connect(mygl, SIGNAL(sig_ResizeToCamera(int,int)), MainWindow, SLOT(slot_ResizeToCamera(int,int)));
         QObject::connect(mygl, SIGNAL(sig_DisableGUI(bool)), MainWindow, SLOT(slot_DisableGUI(bool)));
         QObject::connect(loadSourceObj, SIGNAL(clicked()), mygl, SLOT(slot_loadSourceObj()));
-        QObject::connect(checkBox_viewVOXELS, SIGNAL(clicked(bool)), mygl, SLOT(slot_viewVOXELS(bool)));
         QObject::connect(sourceVOLUME, SIGNAL(clicked()), mygl, SLOT(slot_calculateVolumeOfPoissonObj()));
         QObject::connect(loadTargetObj, SIGNAL(clicked()), mygl, SLOT(slot_loadTargetObj()));
         QObject::connect(checkBox_viewSourceOBJ, SIGNAL(clicked(bool)), mygl, SLOT(slot_viewOBJ(bool)));
-        QObject::connect(checkBox_viewTargetVoxels, SIGNAL(clicked(bool)), mygl, SLOT(slot_viewTARGETVOXELS(bool)));
         QObject::connect(creategrid, SIGNAL(clicked()), mygl, SLOT(slot_createGrid()));
+        QObject::connect(stepinterp, SIGNAL(clicked(bool)), mygl, SLOT(slot_updateInterp()));
+        QObject::connect(viewWhichVoxel, SIGNAL(valueChanged(int)), mygl, SLOT(slot_viewWHICHVOXELS(int)));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -157,9 +158,8 @@ public:
         loadTargetObj->setText(QApplication::translate("MainWindow", "Load Target Obj", Q_NULLPTR));
         sourceVOLUME->setText(QApplication::translate("MainWindow", "Calculate Source Volume", Q_NULLPTR));
         creategrid->setText(QApplication::translate("MainWindow", "Create Grid", Q_NULLPTR));
+        stepinterp->setText(QApplication::translate("MainWindow", "step interp", Q_NULLPTR));
         checkBox_viewSourceOBJ->setText(QApplication::translate("MainWindow", "view Source OBJ", Q_NULLPTR));
-        checkBox_viewVOXELS->setText(QApplication::translate("MainWindow", "View GRID STRUCTURE", Q_NULLPTR));
-        checkBox_viewTargetVoxels->setText(QApplication::translate("MainWindow", "View Target VOXELS", Q_NULLPTR));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", Q_NULLPTR));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", Q_NULLPTR));
     } // retranslateUi

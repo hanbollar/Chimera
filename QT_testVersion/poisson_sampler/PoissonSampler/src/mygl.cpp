@@ -326,6 +326,7 @@ void MyGL::slot_updateInterp() {
     view_src_trg_lerp = 2;
     grid->create(view_src_trg_lerp);
     this->update();
+    std::cout << "slot_updateInterp ran" << std::endl;
 }
 
 void MyGL::slot_viewTARGETVOXELS(bool b) {
