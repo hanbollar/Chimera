@@ -1,6 +1,6 @@
 #include "bounds.h"
 
-Bounds3f Union(const Bounds3f& b1, const Bounds3f& b2) {
+Bounds3f Bounds3f::Union(const Bounds3f& b1, const Bounds3f& b2) {
     if (b1.min.x > b1.max.x) { return b2; }
     if (b2.min.x > b2.max.x) { return b1; }
     return Bounds3f(Point3f(std::min(b1.min.x, b2.min.x),
@@ -11,7 +11,7 @@ Bounds3f Union(const Bounds3f& b1, const Bounds3f& b2) {
                             std::max(b1.max.z, b2.max.z)));
 }
 
-Bounds3f Union(const Bounds3f& b1, const glm::vec3& p) {
+Bounds3f Bounds3f::Union(const Bounds3f& b1, const glm::vec3& p) {
     if (b1.min.x > b1.max.x) { return Bounds3f(p); }
     return Bounds3f(Point3f(std::min(b1.min.x, p.x),
                             std::min(b1.min.y, p.y),
@@ -21,7 +21,7 @@ Bounds3f Union(const Bounds3f& b1, const glm::vec3& p) {
                             std::max(b1.max.z, p.z)));
 }
 
-Bounds3f* BuildBoundingBox(const std::vector<Triangle*>& t) {
+Bounds3f* Bounds3f::BuildBoundingBox(const std::vector<Triangle*>& t) {
     Bounds3f* b = nullptr;
     for (Triangle* tri: t) {
         Point3f minOfTri(0.0f);

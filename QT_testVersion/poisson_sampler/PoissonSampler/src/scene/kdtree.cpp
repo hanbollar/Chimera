@@ -14,9 +14,18 @@ bool KDTree::WithinAnyShape(const glm::vec3& loc) {
     // not optimal for implementation but rudimentary enough to work for now
     // TODO: optimize this better
 
-    int isx_count = 0;
-    root_->Within(loc, isx_count);
-    return (isx_count % 2 != 0); // not even, then *is* within the shape
+    bool within = true;
+    int num_within = 0;
+    for (int i = 0; i < 3; ++i) {
+        glm::vec3 dir = (i == 0) ? glm::vec3(1, 0, 0) : (i == 1) ? glm::vec3(0, 1, 0) : glm::vec3(0, 0, 1);
+        int num_isx = 0;
+
+        root_->Within(loc, num_isx, dir);
+        num_within += (num_isx % 2 != 0) ? 1 : 0;
+
+        within &= (num_isx % 2 != 0);
+    }
+    return num_within >= 2;
 }
 
 void KDTree::BuildWithTriangles(const std::vector<Triangle*>& tris) {
@@ -141,11 +150,11 @@ bool CubeIntersect(const glm::vec3& origin, const glm::vec3& direction) {
     }
 }
 
-bool KDNode::Within(const glm::vec3& loc, int& isx_count) {
+bool KDNode::Within(const glm::vec3& loc, int& isx_count, const glm::vec3& dir) {
     if (IsLeaf()) {
         for (Triangle* t: tris_) {
             // TODO: MIGHT NEED TO ADD A CONVERT TO TRI SPACE MATRIX DEPENDING ON HOW MAYA HANDLES ITS ISX AND OBJ CONFIGS FOR VERTICES
-            if (t->Intersect(loc, SHOOTING_DIR)) {
+            if (t->Intersect(loc, dir)) {
                 isx_count += 1;
                 return true;
             }
@@ -159,12 +168,12 @@ bool KDNode::Within(const glm::vec3& loc, int& isx_count) {
     glm::mat4 transf_m_for_bounds = glm::translate(glm::scale(glm::mat4(1.f), max_bound_ - min_bound_), ave_loc);
     glm::mat4 inv_transp = glm::inverse(glm::transpose(transf_m_for_bounds));
 
-    if (!CubeIntersect(glm::vec3(inv_transp * glm::vec4(loc, 1)), glm::vec3(inv_transp * glm::vec4(SHOOTING_DIR, 0)))) {
+    if (!CubeIntersect(glm::vec3(inv_transp * glm::vec4(loc, 1)), glm::vec3(inv_transp * glm::vec4(dir, 0)))) {
         return false;
     }
 
-    left_->Within(loc, isx_count);
-    right_->Within(loc, isx_count);
+    left_->Within(loc, isx_count, dir);
+    right_->Within(loc, isx_count, dir);
 
     return (isx_count % 2 != 0);
 }

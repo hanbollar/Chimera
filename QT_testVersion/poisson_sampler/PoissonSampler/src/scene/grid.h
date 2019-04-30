@@ -16,9 +16,10 @@ struct Vertex {
 class Grid : public Drawable
 {
 private:
+    const glm::vec3 OFFSET = glm::vec3(0.5f);
     Bounds3f bbox_;
     glm::vec3 dim_of_cell_ = glm::vec3(1.f);
-    glm::ivec3 dim_num_cells_ = glm::ivec3(10, 10, 10);
+    glm::ivec3 dim_num_cells_ = glm::ivec3(20, 20, 20);
 
     std::vector<Vertex> grid_cells_info_;
     std::vector<float> grid_cells_interp_;
@@ -28,6 +29,7 @@ private:
     glm::vec3 origin_ = glm::vec3(0.f);
 public:
     Grid();
+    Grid(const std::vector<Triangle*>& source, const std::vector<Triangle*>& target);
     Grid(const Bounds3f& bbox);
     ~Grid();
 
@@ -48,6 +50,7 @@ public:
 
     virtual GLenum drawMode() const;
     virtual void create();
+    void create(bool b);
 };
 
 #endif // GRID_H

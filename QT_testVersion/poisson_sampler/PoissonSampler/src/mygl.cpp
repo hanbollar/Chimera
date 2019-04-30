@@ -29,7 +29,8 @@ MyGL::MyGL(QWidget *parent)
       scene(new Scene()),
       mesh_source(nullptr), mesh_target(nullptr), grid(nullptr),
       view_VOXELS(true), view_OBJ(true),
-      using_com(false), com_obj(nullptr)
+      using_com(false), com_obj(nullptr),
+      grid_show_target(false)
 {
     // Connect the timer to a function so that when the timer ticks the function is executed
     connect(&timer, SIGNAL(timeout()), this, SLOT(timerUpdate()));
@@ -207,9 +208,6 @@ void MyGL::slot_loadSourceObj() {
     mesh_source->LoadOBJ(file_name, local_path, t);
     mesh_source->create();
 
-    grid = new Grid(Bounds3f(mesh_source->faces));
-    grid->create();
-
     scene->all_mesh.push_back(mesh_source);
     this->update();
 
@@ -279,5 +277,30 @@ void MyGL::slot_viewVOXELS(bool b) {
 
 void MyGL::slot_viewOBJ(bool b) {
     view_OBJ = b;
+    this->update();
+}
+
+void MyGL::slot_viewTARGETVOXELS(bool b) {
+    grid_show_target = b;
+    grid->create(grid_show_target);
+    update();
+}
+
+void MyGL::slot_createGrid() {
+    if (!mesh_source || !mesh_target) {
+        return;
+    }
+
+    grid = new Grid(mesh_source->faces, mesh_target->faces);\
+    std::cout << "computing for source" << std::endl;
+    grid->ComputeSourceSignedDistanceFunctions(mesh_source);
+    std::cout << "computing for target" << std::endl;
+    grid->ComputeTargetSignedDistanceFunctions(mesh_target);
+    std::cout << "creating" << std::endl;
+    grid_show_target = true;
+    grid->create(grid_show_target);
+
+    std::cout << "updating " << std::endl;
+
     this->update();
 }

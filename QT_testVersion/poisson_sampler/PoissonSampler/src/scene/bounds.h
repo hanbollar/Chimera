@@ -16,6 +16,10 @@ public:
 
     ~Bounds3f();
 
+    static Bounds3f* BuildBoundingBox(const std::vector<Triangle*>& t);
+    static Bounds3f Union(const Bounds3f& b1, const Bounds3f& b2);
+    static Bounds3f Union(const Bounds3f& b1, const glm::vec3& p);
+
 //    virtual void drawMode();
 //    virtual void create();
 

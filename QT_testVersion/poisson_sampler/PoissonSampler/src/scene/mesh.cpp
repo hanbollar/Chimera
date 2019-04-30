@@ -43,7 +43,7 @@ void Mesh::LoadOBJ(const QStringRef &filename, const QStringRef &local_path, con
                 this->faces.push_back(t);
             }
         }
-        std::cout << "" << std::endl;
+        //std::cout << "" << std::endl;
         //TODO: .mtl file loading
     }
     else
