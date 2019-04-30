@@ -27,7 +27,7 @@ public:
     bool Within(const glm::vec3& loc, int& isx_count, const glm::vec3& dir);
     bool IsLeaf();
     float GetClosestDistanceToPoint(Point3f p);
-    void GetNearestPoint(KDNode node, Point3f q);
+    void GetNearestPoint(KDNode* node, Point3f q, float& bestDistance, Point3f& bestDistPoint);
 };
 
 class KDTree {
@@ -40,5 +40,5 @@ public:
 
     void BuildWithTriangles(const std::vector<Triangle*>& tris);
     bool WithinAnyShape(const glm::vec3& loc);
-    void GetNearestPoint(Point3f q);
+    Point3f CalculateNearestPoint(Point3f q);
 };

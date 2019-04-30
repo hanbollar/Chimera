@@ -114,9 +114,8 @@ void Grid::Update() {
 }
 
 float ClosestDistanceToMesh(const glm::vec3& loc, const Mesh* m) {
-    // ????? how to do????
-    // TODO!!!!
-    return 1;
+    Point3f closest = m->tree->CalculateNearestPoint(loc);
+    return glm::distance(closest, loc);
 }
 
 bool BadWithinTest(const glm::vec3& loc, const Mesh* m) {
@@ -193,14 +192,14 @@ void Grid::create(bool using_target) {
             if (index3d.x == 1 && index3d.y == 4 && index3d.z == 4) {
                 vert_col.push_back(glm::vec3(1, 1, 0));
             } else {
-                vert_col.push_back(glm::vec3(0, 1, 0));
+                vert_col.push_back(glm::vec3(0, val / 3.0f, val / 3.0f));
             }
             vert_pos.push_back(loc);
             vert_nor.push_back(glm::vec3(1.f));
             vert_idx.push_back(on_count);
             ++on_count;
         } else {
-//            vert_col.push_back(glm::vec3(1));
+//            vert_col.push_back(glm::vec3(-val/10.0f, 0, 0));
         }
 //        vert_idx.push_back(i);
     }

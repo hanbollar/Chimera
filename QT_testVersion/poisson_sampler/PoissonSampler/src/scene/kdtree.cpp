@@ -1,9 +1,5 @@
 #include "kdtree.h"
 
-// Global variable
-Point3f bestDistancePoint;
-float bestDistance = INFINITY;
-
 KDTree::KDTree() : root_(nullptr) {}
 
 KDTree::KDTree(const std::vector<Triangle*>& tris) : root_(new KDNode(tris))
@@ -41,8 +37,11 @@ void KDTree::BuildWithTriangles(const std::vector<Triangle*>& tris) {
     }
 }
 
-void KDTree::GetNearestPoint(Point3f Q) {
-    root_->GetNearestPoint(root_, Q);
+Point3f KDTree::CalculateNearestPoint(Point3f Q) {
+    Point3f bestDistancePoint;
+    float bestDistance = INFINITY;
+    root_->GetNearestPoint(root_, Q, bestDistance, bestDistancePoint);
+    return bestDistancePoint;
 }
 
 /**************/
@@ -197,23 +196,24 @@ float KDNode::GetClosestDistanceToPoint(Point3f p) {
       return glm::sqrt(dx*dx + dy*dy + dz * dz);
 }
 
-void KDNode::GetNearestPoint(KDNode node, Point3f p) {
-    if (node == NULL || node.GetClosestDistanceToPoint(p) > bestDistance) {
+void KDNode::GetNearestPoint(KDNode* node, Point3f p, float& bestDistance,
+                             Point3f& bestDistancePoint) {
+    if (node == nullptr || node->GetClosestDistanceToPoint(p) > bestDistance) {
         return;
     }
-    if (node.IsLeaf()) {
-        Point3f leafPoint = node.tris_.at(0)->GetClosestPointToAPoint(p);
+    if (node->IsLeaf()) {
+        Point3f leafPoint = node->tris_.at(0)->GetClosestPointToAPoint(p);
         float dist = glm::distance(leafPoint, p);
         if (dist < bestDistance) {
             bestDistance = dist;
             bestDistancePoint = leafPoint;
         }
     }
-    if (p[axis_] < node.min_bound_[axis_]) {
-        GetNearestPoint(node.left_, p);
-        GetNearestPoint(node.right_, p);
+    if (p[axis_] < node->min_bound_[axis_]) {
+        GetNearestPoint(node->left_, p, bestDistance, bestDistancePoint);
+        GetNearestPoint(node->right_, p, bestDistance, bestDistancePoint);
     } else {
-        GetNearestPoint(node.left_, p);
-        GetNearestPoint(node.right_, p);
+        GetNearestPoint(node->left_, p, bestDistance, bestDistancePoint);
+        GetNearestPoint(node->right_, p, bestDistance, bestDistancePoint);
     }
 }

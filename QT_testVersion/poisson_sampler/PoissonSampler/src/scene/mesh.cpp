@@ -54,6 +54,11 @@ void Mesh::LoadOBJ(const QStringRef &filename, const QStringRef &local_path, con
 
     // fill in the kdtree rep of the mesh
     this->tree = new KDTree(faces);
+
+    // TESTING DISTANCE FUNCTION
+    Point3f closePoint = this->tree->CalculateNearestPoint(Point3f(15,10,30));
+    std::cout << "TESTING DISTANCE FUNCTION HEREE!!!!!" << std::endl;
+    std::cout << closePoint.x << " , " << closePoint.y << " , " << closePoint.z << std::endl;
 }
 
 GLenum Mesh::drawMode() const {
