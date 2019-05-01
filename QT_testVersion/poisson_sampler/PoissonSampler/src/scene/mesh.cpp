@@ -1,5 +1,15 @@
 #include "scene/mesh.h"
 
+Mesh::Mesh() : Drawable()
+{}
+Mesh::Mesh(std::vector<Triangle*> tris) : Drawable(), faces(tris), tree(new KDTree(tris))
+{
+    std::cout <<" heeeeeeereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"<<std::endl;
+}
+Mesh::~Mesh() {
+    faces.clear();
+}
+
 void Mesh::LoadOBJ(const QStringRef &filename, const QStringRef &local_path, const Transform &transform)
 {
     QString filepath = local_path.toString(); filepath.append(filename);
@@ -73,14 +83,13 @@ void Mesh::create(){
         std::vector<GLuint> vert_idx;
 
         unsigned int index = 0;
-
-        for(int i = 0; i < faces.size(); i++){
-            Triangle* tri = faces[i];
+        for(Triangle* tri : faces){
             Color3f color(.2, .5, .3);
             //Color3f color(colorRNG.nextFloat(), colorRNG.nextFloat(), colorRNG.nextFloat());
-            vert_pos.push_back(tri->points[0]); vert_nor.push_back(tri->normals[0]); vert_col.push_back(color);
-            vert_pos.push_back(tri->points[1]); vert_nor.push_back(tri->normals[1]); vert_col.push_back(color);
-            vert_pos.push_back(tri->points[2]); vert_nor.push_back(tri->normals[2]); vert_col.push_back(color);
+            glm::vec3 nor(glm::cross(tri->points[0] - tri->points[1], tri->points[2] - tri->points[1]));
+            vert_pos.push_back(tri->points[0]); vert_nor.push_back(nor); vert_col.push_back(color);
+            vert_pos.push_back(tri->points[1]); vert_nor.push_back(nor); vert_col.push_back(color);
+            vert_pos.push_back(tri->points[2]); vert_nor.push_back(nor); vert_col.push_back(color);
             vert_idx.push_back(index++);vert_idx.push_back(index++);vert_idx.push_back(index++);
         }
 

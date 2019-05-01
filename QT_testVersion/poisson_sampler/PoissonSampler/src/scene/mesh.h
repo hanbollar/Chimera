@@ -13,6 +13,9 @@
 class Mesh : public Drawable
 {
 public:
+    Mesh();
+    Mesh(std::vector<Triangle*> tris);
+    virtual ~Mesh();
     virtual void create();
     void LoadOBJ(const QStringRef &filename, const QStringRef &local_path, const Transform& transform);
     virtual GLenum drawMode() const;

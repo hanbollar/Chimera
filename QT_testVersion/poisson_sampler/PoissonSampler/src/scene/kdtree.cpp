@@ -49,6 +49,10 @@ Point3f KDTree::CalculateNearestPoint(Point3f Q) {
 KDNode::KDNode() : min_bound_(glm::vec3(0)), max_bound_ (glm::vec3(0)), left_(nullptr), right_(nullptr) {}
 
 KDNode::KDNode(const std::vector<Triangle*>& tris) : left_(nullptr), right_(nullptr) {
+    if (tris.size() == 0) {
+        return;
+    }
+
     for (Triangle* t : tris) {
         for (int i = 0; i < 3; ++i) { // point
             for (int j = 0; j < 3; ++j) { // axis
@@ -58,7 +62,7 @@ KDNode::KDNode(const std::vector<Triangle*>& tris) : left_(nullptr), right_(null
         }
     }
 
-    if (tris.size() == MAX_NUM_ITEMS_AT_LEAF) {
+    if (tris.size() <= MAX_NUM_ITEMS_AT_LEAF) {
         tris_ = tris;
     } else {
         BuildWithTriangles(tris);
@@ -91,11 +95,18 @@ KDNode::~KDNode() {
 
 void KDNode::BuildWithTriangles(const std::vector<Triangle*>& tris) {
     // already guaranted that this is false: (tris.size() <= MAX_NUM_ITEMS_AT_LEAF)
+    if (tris.size() == 0) {
+        return;
+    }
 
-    // split longest axis in half
-    if (max_bound_.x < min_bound_.x || max_bound_.y < min_bound_.y || max_bound_.z < min_bound_.z) {
-        std::cout<<"Improper configuration in KDNode."<<std::endl;
-        throw;
+    // setup
+    for (Triangle* t : tris) {
+        for (int i = 0; i < 3; ++i) { // point
+            for (int j = 0; j < 3; ++j) { // axis
+                min_bound_[j] = glm::min(min_bound_[j], t->points[i][j]);
+                max_bound_[j] = glm::max(max_bound_[j], t->points[i][j]);
+            }
+        }
     }
 
     glm::vec3 diff = glm::abs(max_bound_ - min_bound_);

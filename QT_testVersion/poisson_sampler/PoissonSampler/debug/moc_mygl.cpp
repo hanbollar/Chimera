@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MyGL_t {
-    QByteArrayData data[14];
-    char stringdata0[219];
+    QByteArrayData data[16];
+    char stringdata0[258];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,18 +41,21 @@ QT_MOC_LITERAL(6, 71, 18), // "slot_loadTargetObj"
 QT_MOC_LITERAL(7, 90, 15), // "slot_viewVOXELS"
 QT_MOC_LITERAL(8, 106, 1), // "b"
 QT_MOC_LITERAL(9, 108, 12), // "slot_viewOBJ"
-QT_MOC_LITERAL(10, 121, 21), // "slot_viewTARGETVOXELS"
-QT_MOC_LITERAL(11, 143, 15), // "slot_createGrid"
-QT_MOC_LITERAL(12, 159, 32), // "slot_calculateVolumeOfPoissonObj"
-QT_MOC_LITERAL(13, 192, 26) // "slot_calculateCenterOfMass"
+QT_MOC_LITERAL(10, 121, 20), // "slot_viewWHICHVOXELS"
+QT_MOC_LITERAL(11, 142, 15), // "slot_createGrid"
+QT_MOC_LITERAL(12, 158, 32), // "slot_calculateVolumeOfPoissonObj"
+QT_MOC_LITERAL(13, 191, 26), // "slot_calculateCenterOfMass"
+QT_MOC_LITERAL(14, 218, 17), // "slot_updateInterp"
+QT_MOC_LITERAL(15, 236, 21) // "slot_viewTARGETVOXELS"
 
     },
     "MyGL\0sig_ResizeToCamera\0\0sig_DisableGUI\0"
     "timerUpdate\0slot_loadSourceObj\0"
     "slot_loadTargetObj\0slot_viewVOXELS\0b\0"
-    "slot_viewOBJ\0slot_viewTARGETVOXELS\0"
+    "slot_viewOBJ\0slot_viewWHICHVOXELS\0"
     "slot_createGrid\0slot_calculateVolumeOfPoissonObj\0"
-    "slot_calculateCenterOfMass"
+    "slot_calculateCenterOfMass\0slot_updateInterp\0"
+    "slot_viewTARGETVOXELS"
 };
 #undef QT_MOC_LITERAL
 
@@ -62,7 +65,7 @@ static const uint qt_meta_data_MyGL[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -70,19 +73,21 @@ static const uint qt_meta_data_MyGL[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,   69,    2, 0x06 /* Public */,
-       3,    1,   74,    2, 0x06 /* Public */,
+       1,    2,   79,    2, 0x06 /* Public */,
+       3,    1,   84,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   77,    2, 0x08 /* Private */,
-       5,    0,   78,    2, 0x0a /* Public */,
-       6,    0,   79,    2, 0x0a /* Public */,
-       7,    1,   80,    2, 0x0a /* Public */,
-       9,    1,   83,    2, 0x0a /* Public */,
-      10,    1,   86,    2, 0x0a /* Public */,
-      11,    0,   89,    2, 0x0a /* Public */,
-      12,    0,   90,    2, 0x0a /* Public */,
-      13,    0,   91,    2, 0x0a /* Public */,
+       4,    0,   87,    2, 0x08 /* Private */,
+       5,    0,   88,    2, 0x0a /* Public */,
+       6,    0,   89,    2, 0x0a /* Public */,
+       7,    1,   90,    2, 0x0a /* Public */,
+       9,    1,   93,    2, 0x0a /* Public */,
+      10,    1,   96,    2, 0x0a /* Public */,
+      11,    0,   99,    2, 0x0a /* Public */,
+      12,    0,  100,    2, 0x0a /* Public */,
+      13,    0,  101,    2, 0x0a /* Public */,
+      14,    0,  102,    2, 0x0a /* Public */,
+      15,    1,  103,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    2,    2,
@@ -94,10 +99,12 @@ static const uint qt_meta_data_MyGL[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::Bool,    8,
     QMetaType::Void, QMetaType::Bool,    8,
+    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void, QMetaType::Bool,    8,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
 
        0        // eod
 };
@@ -115,10 +122,12 @@ void MyGL::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         case 4: _t->slot_loadTargetObj(); break;
         case 5: _t->slot_viewVOXELS((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 6: _t->slot_viewOBJ((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 7: _t->slot_viewTARGETVOXELS((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 7: _t->slot_viewWHICHVOXELS((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 8: _t->slot_createGrid(); break;
         case 9: _t->slot_calculateVolumeOfPoissonObj(); break;
         case 10: _t->slot_calculateCenterOfMass(); break;
+        case 11: _t->slot_updateInterp(); break;
+        case 12: _t->slot_viewTARGETVOXELS((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -166,13 +175,13 @@ int MyGL::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 13)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 11;
+        _id -= 13;
     }
     return _id;
 }

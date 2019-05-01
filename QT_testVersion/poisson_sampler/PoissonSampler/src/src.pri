@@ -41,4 +41,5 @@ HEADERS += \
     $$PWD/scene/bounds.h \
     $$PWD/scene/grid.h \
     $$PWD/scene/kdtree.h \
-    $$PWD/scene/triangle.h
+    $$PWD/scene/triangle.h \
+    $$PWD/scene/tableinfo.h

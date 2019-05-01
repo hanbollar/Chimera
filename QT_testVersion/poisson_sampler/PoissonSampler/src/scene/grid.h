@@ -24,14 +24,23 @@ private:
     std::vector<Vertex> grid_cells_info_;
     std::vector<float> grid_cells_interp_;
 
+    glm::vec3 VertexInterpolation(const float& isolevel,
+                                  const glm::vec3& posA, const glm::vec3& posB,
+                                  const float& ip1, const float& ip2);
     void ComputeSignedDistanceFunctions(const Mesh* m, const bool& source);
 
     glm::vec3 origin_ = glm::vec3(0.f);
+
+    void Polygonize(const float& isolevel, const glm::ivec3& index3D,
+                    std::vector<glm::vec3>& positions, std::vector<glm::vec3>& normals);
+
 public:
     Grid();
     Grid(const std::vector<Triangle*>& source, const std::vector<Triangle*>& target);
     Grid(const Bounds3f& bbox);
     ~Grid();
+
+    Mesh* BuildMesh();
 
     void SetOrigin(const glm::vec3& origin) {origin_ = origin;}
 

@@ -47,6 +47,7 @@ private:
     Mesh* mesh_source;
     Mesh* mesh_target;
     Grid* grid;
+    Mesh* grid_mesh;
 
     bool view_VOXELS;
     bool view_OBJ;

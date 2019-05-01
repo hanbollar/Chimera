@@ -27,7 +27,8 @@ MyGL::MyGL(QWidget *parent)
     : GLWidget277(parent),
       gl_camera(),
       scene(new Scene()),
-      mesh_source(nullptr), mesh_target(nullptr), grid(nullptr),
+      mesh_source(nullptr), mesh_target(nullptr),
+      grid(nullptr), grid_mesh(nullptr),
       view_VOXELS(true), view_OBJ(true),
       using_com(false), com_obj(nullptr),
       view_src_trg_lerp(0)
@@ -57,6 +58,8 @@ void MyGL::initializeGL() {
     glEnable(GL_LINE_SMOOTH);
     glEnable(GL_POLYGON_SMOOTH);
 
+    glDisable(GL_CULL_FACE);//-----------------------------------------------------------------------
+
     glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
     glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
     // Set the size with which points should be rendered
@@ -73,18 +76,6 @@ void MyGL::initializeGL() {
     prog_flat.create(":/glsl/flat.vert.glsl", ":/glsl/flat.frag.glsl");
 
     vao.bind();
-
-    //  WENLI TESTING RANDOM THINGS HERE ////////////////////////////
-    Triangle tri = Triangle(Vector3f(0,0,0), Vector3f(0,1,0), Vector3f(0,0,1));
-    std::cout<< "HELLO WENLI" <<std::endl;
-    Point3f source(0,24,0);
-    Point3f closestPoint = tri.GetClosestPointToAPoint(source);
-    std::cout << closestPoint.x << " ," << closestPoint.y << " ," << closestPoint.z << std::endl;
-
-    std::vector<Triangle*> tris;
-    KDNode node = KDNode(tris, Vector3f(0,0,0), Vector3f(1,1,1) );
-    float dist = node.GetClosestDistanceToPoint(Vector3f(-1.0f,12.0f,-1.0f));
-    std::cout << "Distance to box is : " << dist << std::endl;
 }
 
 void MyGL::resizeGL(int w, int h) {
@@ -129,6 +120,9 @@ void MyGL::GLDrawScene()
     if (view_VOXELS) {
         if (grid) {
             prog_flat.draw(*this, *grid);
+        }
+        if (grid_mesh) {
+            prog_lambert.draw(*this, *grid_mesh);
         }
     }
 
@@ -312,6 +306,12 @@ void MyGL::slot_createGrid() {
     view_src_trg_lerp = 1;
     grid->create(view_src_trg_lerp);
 
+    if (grid_mesh) {
+        delete grid_mesh;
+    }
+    grid_mesh = grid->BuildMesh();
+    grid_mesh->create();
+
     std::cout << "updating " << std::endl;
 
     this->update();
@@ -325,6 +325,13 @@ void MyGL::slot_updateInterp() {
     grid->Update();
     view_src_trg_lerp = 2;
     grid->create(view_src_trg_lerp);
+
+    if (grid_mesh) {
+        delete grid_mesh;
+    }
+    grid_mesh = grid->BuildMesh();
+    grid_mesh->create();
+
     this->update();
     std::cout << "slot_updateInterp ran" << std::endl;
 }
