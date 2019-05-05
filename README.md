@@ -19,6 +19,6 @@ ________________________________________________________________________________
 [//]: #![Progress](https://img.shields.io/badge/implementation-in%20progress-orange.svg)
 [//]: #(![Issues](https://img.shields.io/badge/issues-none-green.svg))
 
-- ![Final Project VIDEO](https://vimeo.com/334312594)
+- ![Final Project VIDEO](./CIS660&#32;Final&#32;Presentation.mp4)
 - ![Final Project REPORT](./Authoring&#32;Tool&#32;Final&#32;Project&#32;Report.pdf)
 
