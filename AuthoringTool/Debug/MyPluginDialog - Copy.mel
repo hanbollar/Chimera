@@ -1,0 +1,14 @@
+window;
+  columnLayout;
+    button -label "Browse";
+    scrollField -wordWrap true -editable true;
+  frameLayout -label "LSystem Parameters" -collapsable true;
+	columnLayout;
+
+    	intSliderGrp -label "Iterations" -value 5 -field true -minValue 0 -maxValue 10 -fieldMinValue 0 -fieldMaxValue 10 ;
+    	floatSliderGrp -label "Default step size" -value 1 -field true -minValue 0 -maxValue 10 -fieldMinValue 0 -fieldMaxValue 10 ;
+	floatSliderGrp -label "Default angle" -value 90 -field true -minValue 0 -maxValue 360 -fieldMinValue 0 -fieldMaxValue 360 ;
+rowLayout -numberOfColumns 2;
+button -label "Create";
+button -label "Cancel";
+showWindow;

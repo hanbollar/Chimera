@@ -1,0 +1,144 @@
+global proc SelectBaseMesh()
+{
+	// load selected base mesh
+	string $selected[] = `ls -sl`;
+
+	if (size($selected) > 0)
+	{
+		textField -e -text $selected[0] tf_baseMesh;
+		attrFieldGrp -e -attribute ($selected[0]+ ".t") base_t;
+		attrFieldGrp -e -attribute ($selected[0]+ ".s") base_s;
+		attrFieldGrp -e -attribute ($selected[0]+ ".r") base_r;
+	}
+}
+
+global proc SelectAnimalMesh()
+{
+	// load selected animal mesh
+	string $selected[] = `ls -sl`;
+
+	if (size($selected) > 0)
+	{
+		textField -e -text $selected[0] tf_animalMesh;
+		attrFieldGrp -e -attribute ($selected[0]+ ".t") anim_t;
+		attrFieldGrp -e -attribute ($selected[0]+ ".s") anim_s;
+		attrFieldGrp -e -attribute ($selected[0]+ ".r") anim_r;
+	}
+}
+
+global proc CreateZoomorph()
+{
+	string $baseMesh = `textField -query -text tf_baseMesh`;
+	string $animMesh = `textField -query -text tf_animalMesh`;
+	string $selectBase[] = `ls $baseMesh`;
+	string $selectAnim[] = `ls $animMesh`;
+	float $weight = `floatSliderGrp -q -v animalWeightSlider`;
+	int $gridDim = `intSliderGrp -q -v gridDimensionSlider`;
+	
+	if (size($selectBase) > 0 && size($selectAnim) > 0)
+	{
+		createNode transform -n ZoormorphTransform;
+		createNode mesh -n ZoomorphShape1 -p ZoormorphTransform;
+		sets -add initialShadingGroup ZoomorphShape1;
+
+		select $selectBase[0] $selectAnim[0];
+		// polyBoolOp -op 1 -n result1 $selectBase[0] $selectAnim[0];
+		createNode ZoomorphNode -n ZoomorphNode1;
+		setAttr ZoomorphNode1.weighting $weight;
+		setAttr ZoomorphNode1.gridSize $gridDim;
+		connectAttr ($selectBase[0] + ".outMesh") ZoomorphNode1.baseMesh;
+		connectAttr ($selectAnim[0] + ".outMesh") ZoomorphNode1.animalMesh;
+		connectAttr ZoomorphNode1.outputMesh ZoomorphShape1.inMesh;
+	}	
+}
+
+/* global proc SetEnergies(float CenterOfMass, float VertexChange, float VolumePreservation)
+{
+	floatField -e -value CenterOfMass massEnergy;
+
+} */
+
+
+global proc MakeMainMenu()
+{
+
+window -title "Chimera";
+columnLayout;
+
+////////////////// Base mesh selection ///////////////////////
+frameLayout -label "Base Mesh" -collapsable true;
+	columnLayout;
+
+attrFieldGrp -label "Translation" base_t;
+attrFieldGrp -label "Scale" base_s;
+attrFieldGrp -label "Rotation" base_r;
+
+rowLayout -numberOfColumns 3;
+text -label "";
+button -label "Load Selected Base Mesh" -command "SelectBaseMesh" baseMeshButton;
+textField -ed false -w 300 tf_baseMesh;
+setParent..;
+
+setParent ..;
+setParent ..;
+
+////////////////// Animal mesh selection ///////////////////////
+frameLayout -label "Animal Mesh" -collapsable true;
+	columnLayout;
+attrFieldGrp -label "Translation" anim_t;
+attrFieldGrp -label "Scale" anim_s;
+attrFieldGrp -label "Rotation" anim_r;
+rowLayout -numberOfColumns 3;
+text -label "";
+button -label "Load Selected Animal Mesh" -command "SelectAnimalMesh" animalMeshButton;
+textField -ed false -w 300 tf_animalMesh;
+setParent..;
+
+	setParent ..;
+	setParent ..;
+
+//////////////////////////////////////////////////////
+frameLayout -label "Configuration Settings" -collapsable true;
+	columnLayout;
+
+global string $animalWeightSlider; 
+floatSliderGrp -label "Animal Weight" -field true -value 0.0 -minValue 0 -maxValue 1 -fieldMinValue 0 -fieldMaxValue 1 -sliderStep 0.01 animalWeightSlider;
+
+intSliderGrp -label "Grid Dimensions" -field true -value 20 -minValue 10 -maxValue 50 -fieldMinValue 20 -fieldMaxValue 50 gridDimensionSlider;
+	setParent ..;
+
+rowLayout -numberOfColumns 3;
+text -label "";
+button -label "Create Zoomorph" -command "CreateZoomorph" zoomorphButton;
+setParent ..;
+
+///////////////////////////////////
+
+frameLayout -label "Configuration Energy Outputs" -collapsable true;
+	columnLayout;
+
+rowLayout -numberOfColumns 3;
+text -label "Center of Mass Energy";
+floatField -minValue 0 -maxValue 1 massEnergy;
+text -label "Energy within valid range" centerOfMassText;
+setParent ..;
+
+rowLayout -numberOfColumns 3;
+text -label "Vertex Change energy";
+floatField -minValue 0 -maxValue 1 vertexEnergy;
+text -label "Energy higher than valid range" vertexChangeText;
+setParent ..;
+
+rowLayout -numberOfColumns 3;
+text -label "Volume Preservation Energy";
+floatField -minValue 0 -maxValue 1 volumeEnergy;
+text -label "Energy higher than valid range" volumePreservationText;
+setParent ..;
+
+setParent ..;
+setParent ..;
+showWindow;
+
+}
+
+MakeMainMenu();

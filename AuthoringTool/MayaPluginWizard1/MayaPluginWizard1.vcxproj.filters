@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="PluginMain.cpp" />
+    <ClCompile Include="ZoomorphNode.cpp" />
+    <ClCompile Include="Scene\grid.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\kdtree.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\mesh.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\triangle.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\bounds.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\intersection.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="globals.h" />
+    <ClInclude Include="la.h" />
+    <ClInclude Include="ZoomorphNode.h" />
+    <ClInclude Include="Scene\grid.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\kdtree.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\mesh.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\triangle.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\bounds.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\intersection.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\tableinfo.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Options.txt" />
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="scene">
+      <UniqueIdentifier>{87f8f895-99e4-4c92-b6c2-19a9fc4174da}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

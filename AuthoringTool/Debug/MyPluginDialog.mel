@@ -1,0 +1,39 @@
+sphere -name "baseMesh";
+polyCube -name "animMesh";
+window;
+columnLayout;
+frameLayout -label "Base Mesh" -collapsable true;
+	columnLayout;
+
+attrFieldGrp -attribute baseMesh.t -label "Translation";
+attrFieldGrp -attribute baseMesh.s -label "Scale";
+attrFieldGrp -attribute baseMesh.r -label "Rotation";
+setParent ..;
+setParent ..;
+
+frameLayout -label "Animal Mesh" -collapsable true;
+	columnLayout;
+
+attrFieldGrp -attribute animMesh.t -label "Translation";
+attrFieldGrp -attribute animMesh.s -label "Scale";
+attrFieldGrp -attribute animMesh.r -label "Rotation";
+	setParent ..;
+	setParent ..;
+
+frameLayout -label "Configuration Weighting" -collapsable true;
+	columnLayout;
+
+floatSliderGrp -label "Animal Weight" -value 0.5 -field true -minValue 0 -maxValue 1 -fieldMinValue 0 -fieldMaxValue 1 ;
+
+floatSliderGrp -label "Center of Mass Energy" -value 1.0 -field true -minValue 0 -maxValue 1 -fieldMinValue 0 - fieldMaxValue 1;
+
+floatSliderGrp -label "Vertex change Energy" -value 1.0 -field true -minValue 0 -maxValue 1 -fieldMinValue 0 - fieldMaxValue 1;
+
+floatSliderGrp -label "Volume Preservation Energy" -value 1.0 -field true -minValue 0 -maxValue 1 -fieldMinValue 0 - fieldMaxValue 1;
+	setParent ..;
+	setParent ..;
+
+
+button -label "Create Zoomorph";
+
+showWindow;
