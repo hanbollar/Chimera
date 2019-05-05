@@ -19,4 +19,5 @@ ________________________________________________________________________________
 [//]: #![Progress](https://img.shields.io/badge/implementation-in%20progress-orange.svg)
 [//]: #(![Issues](https://img.shields.io/badge/issues-none-green.svg))
 
-[Final Project Report](./Authoring Tool Final Project Report.pdf)
+![Final Project Report](./Authoring Tool Final Project Report.pdf)
+![Final Project Video](https://vimeo.com/334312594/dfe91b950d)
