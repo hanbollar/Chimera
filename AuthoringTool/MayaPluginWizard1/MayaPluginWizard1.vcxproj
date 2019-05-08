@@ -84,7 +84,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>C:\Users\hanbo\Desktop\wenli\AuthoringTool\include;.;C:\Program Files\Autodesk\Maya2018\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hanbo\Desktop\wenli\Chimera\AuthoringTool\include;.;C:\Program Files\Autodesk\Maya2018\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile>$(Configuration)\MayaPluginWizard1.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>

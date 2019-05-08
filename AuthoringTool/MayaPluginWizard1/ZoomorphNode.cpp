@@ -332,7 +332,7 @@ Mesh* ZoomorphNode::getZoomorphMesh(MDataHandle animMeshHandle, MDataHandle base
     grid->ComputeSourceSignedDistanceFunctions(baseMesh2);
     grid->ComputeTargetSignedDistanceFunctions(animalMesh2);
 
-    int iterations = w * 25;
+    int iterations = (int) w;
     
     for (int i = 0; i < iterations; i++) {
         grid->Update();
@@ -340,14 +340,14 @@ Mesh* ZoomorphNode::getZoomorphMesh(MDataHandle animMeshHandle, MDataHandle base
 
     Mesh* zoomorphMesh = grid->BuildMesh();
 
-    glm::vec3 animCOM = this->CenterOfMassEnergy(animalMesh2);
+    /*glm::vec3 animCOM = this->CenterOfMassEnergy(animalMesh2);
     glm::vec3 baseCOM = this->CenterOfMassEnergy(baseMesh2);
 
-    com = glm::length(animCOM - baseCOM);
+    com = glm::length(animCOM - baseCOM);*/
 
     return zoomorphMesh;
 }
-
+/*
 glm::vec3 ZoomorphNode::CenterOfMassEnergy(Mesh* mesh_source) {
     glm::vec3 barycenter(0.f);
     float totalSA = 0.f;
@@ -360,4 +360,4 @@ glm::vec3 ZoomorphNode::CenterOfMassEnergy(Mesh* mesh_source) {
     }
     barycenter /= totalSA;
     return barycenter;
-}
+}*/

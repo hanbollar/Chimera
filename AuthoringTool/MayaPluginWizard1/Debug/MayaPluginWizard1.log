@@ -1,19 +1,142 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (MayaPluginWizard1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  mesh.cpp
-c:\users\hanbo\desktop\wenli\authoringtool\mayapluginwizard1\globals.h(21): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\hanbo\desktop\wenli\authoringtool\mayapluginwizard1\globals.h(22): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\hanbo\desktop\wenli\authoringtool\mayapluginwizard1\globals.h(23): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\hanbo\desktop\wenli\authoringtool\mayapluginwizard1\globals.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\hanbo\desktop\wenli\authoringtool\mayapluginwizard1\globals.h(25): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\hanbo\desktop\wenli\authoringtool\mayapluginwizard1\globals.h(26): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\hanbo\desktop\wenli\authoringtool\mayapluginwizard1\globals.h(27): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\hanbo\desktop\wenli\authoringtool\mayapluginwizard1\globals.h(28): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\hanbo\desktop\wenli\authoringtool\mayapluginwizard1\globals.h(29): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\hanbo\desktop\wenli\authoringtool\mayapluginwizard1\globals.h(76): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+  ZoomorphNode.cpp
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(21): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(22): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(23): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(25): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(26): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(27): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(28): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(29): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(76): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int
           ]
-C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(1216,5): warning MSB8012: TargetPath(C:\Users\hanbo\Desktop\wenli\AuthoringTool\MayaPluginWizard1\Debug\Chimera.mll) does not match the Linker's OutputFile property value (C:\Users\hanbo\Desktop\wenli\AuthoringTool\MayaPluginWizard1\Debug\MayaPluginWizard1.mll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\zoomorphnode.cpp(224): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\zoomorphnode.cpp(269): warning C4101: 'frame': unreferenced local variable
+  triangle.cpp
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(21): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(22): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(23): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(25): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(26): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(27): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(28): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(29): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(76): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+  mesh.cpp
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(21): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(22): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(23): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(25): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(26): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(27): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(28): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(29): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(76): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+  kdtree.cpp
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(21): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(22): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(23): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(25): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(26): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(27): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(28): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(29): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(76): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\scene\kdtree.cpp(118): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  intersection.cpp
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(21): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(22): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(23): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(25): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(26): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(27): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(28): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(29): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(76): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+  grid.cpp
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(21): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(22): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(23): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(25): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(26): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(27): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(28): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(29): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(76): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\scene\grid.cpp(34): warning C4244: 'argument': conversion from 'int' to 'const T', possible loss of data
+          with
+          [
+              T=float
+          ]
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\scene\grid.cpp(149): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\scene\grid.cpp(155): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\scene\grid.cpp(224): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\scene\grid.cpp(286): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  bounds.cpp
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(21): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(22): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(23): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(25): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(26): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(27): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(28): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(29): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(76): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+  PluginMain.cpp
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(21): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(22): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(23): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(25): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(26): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(27): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(28): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(29): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hanbo\desktop\wenli\chimera\authoringtool\mayapluginwizard1\globals.h(76): warning C4244: 'return': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+  Generating Code...
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(1216,5): warning MSB8012: TargetPath(C:\Users\hanbo\Desktop\wenli\Chimera\AuthoringTool\MayaPluginWizard1\Debug\Chimera.mll) does not match the Linker's OutputFile property value (C:\Users\hanbo\Desktop\wenli\Chimera\AuthoringTool\MayaPluginWizard1\Debug\MayaPluginWizard1.mll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
 C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(1218,5): warning MSB8012: TargetName(Chimera) does not match the Linker's OutputFile property value (MayaPluginWizard1). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
-  MayaPluginWizard1.vcxproj -> C:\Users\hanbo\Desktop\wenli\AuthoringTool\MayaPluginWizard1\Debug\Chimera.mll
+     Creating library Debug\MayaPluginWizard1.lib and object Debug\MayaPluginWizard1.exp
+  MayaPluginWizard1.vcxproj -> C:\Users\hanbo\Desktop\wenli\Chimera\AuthoringTool\MayaPluginWizard1\Debug\Chimera.mll

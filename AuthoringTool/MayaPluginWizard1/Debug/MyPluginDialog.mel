@@ -102,7 +102,7 @@ frameLayout -label "Configuration Settings" -collapsable true;
 	columnLayout;
 
 global string $animalWeightSlider; 
-floatSliderGrp -label "Animal Weight" -field true -value 0.0 -minValue 0 -maxValue 1 -fieldMinValue 0 -fieldMaxValue 1 -sliderStep 0.01 animalWeightSlider;
+floatSliderGrp -label "Animal Weight" -field true -value 1.0 -minValue 0 -maxValue 20 -fieldMinValue 0 -fieldMaxValue 20 -sliderStep 1.0 animalWeightSlider;
 
 intSliderGrp -label "Grid Dimensions" -field true -value 20 -minValue 10 -maxValue 50 -fieldMinValue 20 -fieldMaxValue 50 gridDimensionSlider;
 	setParent ..;
@@ -114,28 +114,6 @@ setParent ..;
 
 ///////////////////////////////////
 
-frameLayout -label "Configuration Energy Outputs" -collapsable true;
-	columnLayout;
-
-rowLayout -numberOfColumns 3;
-text -label "Center of Mass Energy";
-floatField -minValue 0 -maxValue 1 massEnergy;
-text -label "Energy within valid range" centerOfMassText;
-setParent ..;
-
-rowLayout -numberOfColumns 3;
-text -label "Vertex Change energy";
-floatField -minValue 0 -maxValue 1 vertexEnergy;
-text -label "Energy higher than valid range" vertexChangeText;
-setParent ..;
-
-rowLayout -numberOfColumns 3;
-text -label "Volume Preservation Energy";
-floatField -minValue 0 -maxValue 1 volumeEnergy;
-text -label "Energy higher than valid range" volumePreservationText;
-setParent ..;
-
-setParent ..;
 setParent ..;
 showWindow;
 
